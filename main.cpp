@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     gst_init (&argc, &argv);
     
     /* Build the pipeline */
-    pipeline = gst_parse_launch ("playbin2 uri=http://docs.gstreamer.com/media/sintel_trailer-480p.webm", 0);
+    pipeline = gst_parse_launch ("playbin2 uri=http://video.webmfiles.org/big-buck-bunny_trailer.webm", 0);
     
     /* Start playing */
     gst_element_set_state (pipeline, GST_STATE_PLAYING);
