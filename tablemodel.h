@@ -38,16 +38,35 @@
 **
 ****************************************************************************/
 
-#include "mainwindow.h"
+#ifndef TABLEMODEL_H
+#define TABLEMODEL_H
 
-#include <QApplication>
+#include <QAbstractTableModel>
+#include <QList>
+#include <QPair>
 
 //! [0]
-int main(int argc, char *argv[])
+class TableModel : public QAbstractTableModel
 {
-    QApplication app(argc, argv);
-    MainWindow mw;
-    mw.show();
-    return app.exec();
-}
+    Q_OBJECT
+
+public:
+    TableModel(QObject *parent = 0);
+    TableModel(QList<QPair<QString, QString> > listofPairs, QObject *parent = 0);
+
+    int rowCount(const QModelIndex &parent) const;
+    int columnCount(const QModelIndex &parent) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex());
+    bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
+    QList<QPair<QString, QString> > getList();
+
+private:
+    QList<QPair<QString, QString> > listOfPairs;
+};
 //! [0]
+
+#endif // TABLEMODEL_H

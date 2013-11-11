@@ -38,16 +38,37 @@
 **
 ****************************************************************************/
 
-#include "mainwindow.h"
+#ifndef NEWADDRESSTAB_H
+#define NEWADDRESSTAB_H
 
-#include <QApplication>
+#include <QWidget>
+
+QT_BEGIN_NAMESPACE
+class QLabel;
+class QPushButton;
+class QVBoxLayout;
+QT_END_NAMESPACE
 
 //! [0]
-int main(int argc, char *argv[])
+class NewAddressTab : public QWidget
 {
-    QApplication app(argc, argv);
-    MainWindow mw;
-    mw.show();
-    return app.exec();
-}
+    Q_OBJECT
+
+public:
+    NewAddressTab(QWidget *parent = 0);
+
+public slots:
+    void addEntry();
+
+signals:
+    void sendDetails(QString name, QString address);
+
+private:
+    QLabel *descriptionLabel;
+    QPushButton *addButton;
+    QVBoxLayout *mainLayout;
+
+};
 //! [0]
+
+#endif

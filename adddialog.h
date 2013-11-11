@@ -38,16 +38,34 @@
 **
 ****************************************************************************/
 
-#include "mainwindow.h"
+#ifndef ADDDIALOG_H
+#define ADDDIALOG_H
 
-#include <QApplication>
+#include <QDialog>
+
+QT_BEGIN_NAMESPACE
+class QLabel;
+class QPushButton;
+class QTextEdit;
+class QLineEdit;
+QT_END_NAMESPACE
 
 //! [0]
-int main(int argc, char *argv[])
+class AddDialog : public QDialog
 {
-    QApplication app(argc, argv);
-    MainWindow mw;
-    mw.show();
-    return app.exec();
-}
+    Q_OBJECT
+
+public:
+    AddDialog(QWidget *parent = 0);
+    QLineEdit *nameText;
+    QTextEdit *addressText;
+
+private:
+    QLabel *nameLabel;
+    QLabel *addressLabel;
+    QPushButton *okButton;
+    QPushButton *cancelButton;
+};
 //! [0]
+
+#endif // ADDDIALOG_H
